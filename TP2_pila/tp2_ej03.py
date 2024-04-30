@@ -26,11 +26,11 @@ def reemplazar():
     return None
 
 reemplazar()
-print("tamaño pila", pila.size())
-print("tamaño auxiliar", pila_aux.size())
-print("top pila auxiliar", pila_aux.on_top())     
+print("tamaño pila", pila.size())   #compruebo que esté vacía
+print("tamaño auxiliar", pila_aux.size())   #compruebo que esté llena
+print("top pila auxiliar", pila_aux.on_top())     #veo orden
 
 while pila_aux.size() > 0:
     pila.push(pila_aux.pop())   # volviendo los datos para no perder nada
 
-print("on top pila: ", pila.on_top())
+print("on top pila: ", pila.on_top())   # confirmo el orden

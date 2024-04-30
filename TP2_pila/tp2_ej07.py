@@ -1,0 +1,1 @@
+# Eliminar el i-ésimo elemento debajo de la cima de una pila de palabras.
