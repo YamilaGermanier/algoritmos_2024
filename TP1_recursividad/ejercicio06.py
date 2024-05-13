@@ -2,7 +2,7 @@
 
 # unacadena = anedacanu
 def invertida(cadena):
-    if len(cadena) == 0:
+    if len(cadena) == 0: #longitud
         return cadena
     else:
         return cadena[-1] + invertida(cadena[:-1]) # -1 último elemento + función menos el último elemnto

@@ -8,4 +8,4 @@ def invertir(numero):
     else:
         return (numero%10)* (10**len(str(numero//10))) + invertir(numero//10) # len(str(numero) para calcular cuantos dígitos
 
-print(invertir(105))
+print(invertir(108))
