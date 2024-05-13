@@ -5,7 +5,6 @@ def invertida(cadena):
     if len(cadena) == 0:
         return cadena
     else:
-        return cadena[-1] + invertida(cadena[:-1])
-
+        return cadena[-1] + invertida(cadena[:-1]) # -1 último elemento + función menos el último elemnto
 cadena='hola'
 print(invertida(cadena))
