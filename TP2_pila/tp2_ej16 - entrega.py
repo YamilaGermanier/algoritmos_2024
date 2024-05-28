@@ -39,7 +39,8 @@ while p_empire.size()>0:
             p_inter.push(V)
         else:
             p_aux.push(VII)
-        
+
+    # restauro la pila de the force
     while p_aux.size()>0:
         p_force.push(p_aux.pop())
 
