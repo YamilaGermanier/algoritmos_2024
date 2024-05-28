@@ -60,6 +60,9 @@ print(len(personajes_star_wars))
 def by_name(item):
     return item['nombre']
 
+def by_house(item):
+    return item['casa_comic'] + item['nombre']  # devuelve primero la casa y luego x alfabeto
+
 def by_hegiht(item):
     return item['altura']
 

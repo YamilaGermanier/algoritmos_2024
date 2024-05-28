@@ -9,7 +9,7 @@ pila_aux = Stack() # inicializo la auxiliar
 for i in range(10):
     pila.push(randint(1, 5)) # cargo valores random no tan altos para probar
 
-print(pila.on_top()) # veo cuál está arriba para saber
+print("arriba:", pila.on_top()) # veo cuál está arriba para saber
 
 buscado = int(input("Ingrese el número a buscar: ")) # entro el valor a buscar
 
@@ -30,7 +30,7 @@ def buscar(buscado, pila_aux):
 while pila_aux.size() > 0:
     pila.push(pila_aux.pop())   # volviendo los datos para no perder nada
 
-print(pila.on_top())
+print("reviso arriba:", pila.on_top())
 
 x=buscar(buscado, pila_aux)
     
