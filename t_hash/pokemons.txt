@@ -1,0 +1,38 @@
+[001,"Bulbasaur", "Planta", "Veneno"],
+[002,"Ivysaur", "Planta", "Veneno"],
+[003,"Venusaur", "Planta", "Veneno"],
+[004,"Charmander", "Fuego", ""],
+[005,"Charmeleon", "Fuego", ""],
+[006,"Charizard", "Fuego", "Volador"],
+[007,"Squirtle", "Agua", ""],
+[008,"Wartortle", "Agua", ""],
+[009,"Blastoise", "Agua", ""],
+[010,"Caterpie", "Insecto, ""],
+[016,"Pidgey", "Normal", "Volador"],
+[019,"Ratata", "Normal", ""],
+[025,"Pikachu", "Eléctrico", ""],
+[027,"Sandshrew", "Tierra", ""],
+[039,"Jigglypuff", "Normal", ""],
+[056,"Mankey", "Pelea", ""],
+[063,"Abra", "Psíquico", ""],
+[076,"Golem", "Roca", "Tierra"],
+[081,"Magnemite", "Eléctrico", "Acero"],
+[092,"Gastly", "Fantasma", "Veneno"],
+[124,"Jynx", "Hielo", "Psíquico"],
+[131,"Lapras", "Agua", "Hielo"],
+[132,"Ditto", "Normal", ""],
+[133,"Eevee", "Normal", ""],
+[135,"Jolteon", "Eléctrico", ""],
+[143,"Snorlax", "Normal", ""],
+[147,"Dratini", "Dragón", ""],
+[149,"Dragonite", "Dragón", "Volador"],
+[150,"Mewto", "Psíquico", ""]
+
+
+
+
+#147	#0147	Dratini	Dratini	Dragon
+#148	#0148	Dragonair	Dragonair	Dragon
+#149	#0149	Dragonite	Dragonite	Dragon	Flying
+#150	#0150	Mewtwo	Mewtwo	Psychic
+#151	#0151	Mew	Mew	Psychic
