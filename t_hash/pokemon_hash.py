@@ -13,17 +13,6 @@ la tercera sera en base  a su nivel repartiéndolos en 10 posiciones dentro de l
 """
 
 """
-pokemons = [
-    ("001", "Bulbasaur", ["Planta", "Veneno"], 5),
-    ("004", "Charmander", ["Fuego"], 10),
-    ("007", "Squirtle", ["Agua"], 7),
-    ("025", "Pikachu", ["Eléctrico"], 15),
-    ("087", "Dewgong", ["Agua", "Hielo"], 20),
-    ("149", "Dragonite", ["Dragón", "Volador"], 30),
-    ("198", "Murkrow", ["Siniestro", "Volador"], 10),
-    ("437", "Bronzong", ["Acero", "Psíquico"], 25),
-    ("479", "Rotom", ["Eléctrico", "Fantasma"], 35)
-
 pokemons = [ {'número': 1,'nombre': "Bulbasaur", 'tipo': "Planta", 'subtipo': "Veneno", 'nivel': 10},
             {'número': 4,'nombre': "Charmander", 'tipo': "Fuego", 'subtipo': "", 'nivel': 10},
             {'número': 6,'nombre': "Charizard", 'tipo': "Fuego", 'subtipo': "Volador", 'nivel': 55},
@@ -49,7 +38,6 @@ pokemons = [ {'número': 1,'nombre': "Bulbasaur", 'tipo': "Planta", 'subtipo': "
             {'número': 149,'nombre': "Dragonite", 'tipo': "Dragón", 'subtipo': "Volador", 'nivel': 45},
             {'número': 150,'nombre': "Mewto", 'tipo': "Psíquico", 'subtipo': "", 'nivel': 90},
 ]
-    
 """
 
 
@@ -166,7 +154,5 @@ for nivel, pokemon_nivel in pokemons_por_nivel.items():
     print(f"Nivel: {nivel}")
     for pokemon in pokemon_nivel:
             print(f"  {pokemon['nombre']}")
-            print(f"  {pokemon['nivel']}")
-            print("--")
 
     print("--------------")
