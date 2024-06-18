@@ -21,7 +21,7 @@ las siguientes actividades utilizando lista de lista implementando las funciones
 """
 
 from random import choice
-from lista import show_list_list, by_name, search
+from TP_Listas.lista_ejemplo import show_list_list, by_name, search
 
 entrenadores = [
     {
