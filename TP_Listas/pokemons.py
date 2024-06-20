@@ -89,5 +89,29 @@ pokemons = [
         "nivel": 52,
         "tipo": "Roca",
         "subtipo": "Volador"
+    },
+       {
+        "nombre": "Terrakion",
+        "nivel": 62,
+        "tipo": "Roca",
+        "subtipo": "Pelea"
+    },
+    {
+        "nombre": "Pikachu",
+        "nivel": 20,
+        "tipo": "Eléctrico",
+        "subtipo": None
+    },
+    {
+        "nombre": "Pikachu",
+        "nivel": 20,
+        "tipo": "Eléctrico",
+        "subtipo": None
+    },
+    {
+        "nombre": "Pikachu",
+        "nivel": 20,
+        "tipo": "Eléctrico",
+        "subtipo": None
     }
 ]

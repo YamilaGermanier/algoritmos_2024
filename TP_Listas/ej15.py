@@ -129,7 +129,6 @@ trainer=0
 list_aux=[]
 for entrenador in lista_entrenadores:
     for pokemon in entrenador['sublist']:
-        print(f"Debug: Entrenador {entrenador['nombre']}, Pokémon: {pokemon}")  # Depuración
         if pokemon['nombre'] == x:
             trainer+=1
             list_aux.append(entrenador)
@@ -141,13 +140,53 @@ for e in list_aux:
 print("-----------------------------------------------------------")
 
 #  i. mostrar los entrenadores que tienen Pokémons repetidos;
-lista_aux=[]
 entrenadores_con_repetidos = []
 
+for entrenador in lista_entrenadores:
+    nombres_pokemons = [pokemon['nombre'] for pokemon in entrenador['sublist']]
+    nombres_vistos = []
+    repetidos = False
+    
+    for nombre in nombres_pokemons:
+        if nombre in nombres_vistos:
+            repetidos = True
+            break
+        else:
+            nombres_vistos.append(nombre)
+    
+    if repetidos:
+        entrenadores_con_repetidos.append(entrenador['nombre'])
+
+print("Entrenadores que tienen Pokémons repetidos: ")
+for nombre in entrenadores_con_repetidos:
+    print(nombre)
+
+print("-----------------------------------------------------------")
+            
 
 #  j. determinar los entrenadores que tengan uno de los siguientes Pokémons: Tyrantrum, Terrakion
 #    o Wingull;
+list_j=[]
+for entrenador in lista_entrenadores:
+    for pokemon in entrenador['sublist']:
+        if pokemon['nombre'] == 'Terrakion' or pokemon['nombre'] == 'Tyrantrum' or pokemon['nombre'] == 'Wingull':
+            list_j.append(entrenador['nombre'])   
+print("Entrenadores que tengan uno de los siguientes Pokémons: Tyrantrum, Terrakion o Wingull")
+for e in list_j:            
+    print(e)
+
+print("-----------------------------------------------------------")
 
 #  k. determinar si un entrenador “X” tiene al Pokémon “Y”, tanto el nombre del entrenador
 #   como del Pokémon deben ser ingresados; además si el entrenador tiene al Pokémon se
 #   deberán mostrar los datos de ambos;
+print("Búsqueda:")
+x=input("Ingrese el nombre entrenador a buscar: ")
+y=input("Ingrese el nombre del pokémon a buscar: ")
+for entrenador in lista_entrenadores:
+    if entrenador['nombre'] == x:
+        for pokemon in entrenador['sublist']:
+            if pokemon['nombre']== y:
+                print("Datos del entrenador: ",entrenador)
+                print("Datos del pokémon: ",pokemon)
+                
