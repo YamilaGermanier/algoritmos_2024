@@ -12,35 +12,6 @@ la tercera sera en base  a su nivel repartiéndolos en 10 posiciones dentro de l
     g. mostrar todos los Pokémons de los siguientes tipo: Acero, Fuego, Electrifico, Hielo
 """
 
-"""
-pokemons = [ {'número': 1,'nombre': "Bulbasaur", 'tipo': "Planta", 'subtipo': "Veneno", 'nivel': 10},
-            {'número': 4,'nombre': "Charmander", 'tipo': "Fuego", 'subtipo': "", 'nivel': 10},
-            {'número': 6,'nombre': "Charizard", 'tipo': "Fuego", 'subtipo': "Volador", 'nivel': 55},
-            {'número': 7,'nombre': "Squirtle", 'tipo': "Agua", 'subtipo': "", 'nivel': 10},
-            {'número': 10,'nombre': "Caterpie", 'tipo': "Insecto", 'subtipo': "", 'nivel': 5},
-            {'número': 16,'nombre': "Pidgey", 'tipo': "Normal", 'subtipo': "Volador", 'nivel': 5},
-            {'número': 19,'nombre': "Ratata", 'tipo': "Normal", 'subtipo': "", 'nivel': 5},
-            {'número': 25,'nombre': "Pikachu", 'tipo': "Eléctrico", 'subtipo': "", 'nivel': 15},
-            {'número': 27,'nombre': "Sandshrew", 'tipo': "Tierra", 'subtipo': "", 'nivel': 15},
-            {'número': 39,'nombre': "Mankey", 'tipo': "Pelea", 'subtipo': "", 'nivel': 10},
-            {'número': 56,'nombre': "Pidgey", 'tipo': "Normal", 'subtipo': "Volador", 'nivel': 25},
-            {'número': 63,'nombre': "Abra", 'tipo': "Psíquico", 'subtipo': "", 'nivel': 35},
-            {'número': 76,'nombre': "Golem", 'tipo': "Roca", 'subtipo': "Tierra", 'nivel': 35},
-            {'número': 81,'nombre': "Magnemite", 'tipo': "Eléctrico", 'subtipo': "Acero", 'nivel': 35},
-            {'número': 92,'nombre': "Gastly", 'tipo': "Fantasma", 'subtipo': "Veneno", 'nivel': 25},
-            {'número': 124,'nombre': "Jynx", 'tipo': "Hielo", 'subtipo': "Psíquico", 'nivel': 35},
-            {'número': 131,'nombre': "Lapras", 'tipo': "Agua", 'subtipo': "Hielo", 'nivel': 30},
-            {'número': 132,'nombre': "Ditto", 'tipo': "Normal", 'subtipo': "", 'nivel': 10},
-            {'número': 133,'nombre': "Eevee", 'tipo': "Normal", 'subtipo': "", 'nivel': 15},
-            {'número': 135,'nombre': "Jolteon", 'tipo': "Eléctrico", 'subtipo': "", 'nivel': 45},
-            {'número': 143,'nombre': "Snorlax", 'tipo': "Normal", 'subtipo': "", 'nivel': 45},
-            {'número': 147,'nombre': "Dratini", 'tipo': "Dragón", 'subtipo': "", 'nivel': 15},
-            {'número': 149,'nombre': "Dragonite", 'tipo': "Dragón", 'subtipo': "Volador", 'nivel': 45},
-            {'número': 150,'nombre': "Mewto", 'tipo': "Psíquico", 'subtipo': "", 'nivel': 90},
-]
-"""
-
-
 # número, nombre, tipo, subtipo, nivel
 pokemons = [ {'número': 1,'nombre': "Bulbasaur", 'tipo': ["Planta", "Veneno"], 'nivel': 10},
             {'número': 4,'nombre': "Charmander", 'tipo': ["Fuego"], 'nivel': 10},
@@ -74,9 +45,6 @@ pokemons_por_subtipo = {}
 pokemons_por_digito = {}
 pokemons_por_nivel = {}
 
-
-print("--------------")
-
 # A__ 1era-- tipo de pokémon 
 def hash_tipo(pokemon):
     return pokemon['tipo'][0]
@@ -94,7 +62,6 @@ def hash_num(pokemon):
 ##A__ 3era-- nivel
 def hash_nivel(pokemon):
     return pokemon['nivel']//10
-
 
 
 ###################################################3
@@ -129,6 +96,7 @@ for pokemon in pokemons:
 
 #print(pokemons_por_tipo)   FUNCIONA, ARMA LAS TABLAS
 # Para imprimir más lindo:
+"""
 for tipo, pokemon_tipo in pokemons_por_tipo.items():
     print(f"Tipo: {tipo}")
     for pokemon in pokemon_tipo:
@@ -156,3 +124,50 @@ for nivel, pokemon_nivel in pokemons_por_nivel.items():
             print(f"  {pokemon['nombre']}")
 
     print("--------------")
+"""
+
+print("---------------------------------------------------------------------------------------------------")
+print("---------------------------------------------------------------------------------------------------")
+
+# d. deberá permitir cargar Pokémons de los cuales se dispone de su número, nombre, tipo/s, nivel.
+def cargar_pokemon(numero, nombre, tipo, nivel):
+    nuevo_pokemon = {'número': numero, 'nombre': nombre, 'tipo': tipo, 'nivel': nivel}
+    pokemons.append(nuevo_pokemon)
+
+cargar_pokemon(151, "Mew", ["Psíquico"], 90)
+
+print("---------------------------------------------------------------------------------------------------")
+
+# e. mostrar todos los Pokémons cuyos numeros terminan en 3, 7 y 9;
+print("Pokémons cuyos numeros terminan en 3, 7 y 9:")
+for pokemon in pokemons:
+    if pokemon['número'] % 10 in [3, 7, 9]:
+        print(f"{pokemon['nombre']} (#{pokemon['número']})")
+
+print("---------------------------------------------------------------------------------------------------")
+
+# f. mostrar todos los Pokémons cuyos niveles son multiplos de 2, 5 y 10;
+def mostrar_niveles_multiplos(pokemons, multiplos):
+    for pokemon in pokemons:
+        if pokemon['nivel'] % multiplos == 0:
+            print(f"{pokemon['nombre']} (Nivel {pokemon['nivel']})")
+
+print("Pokémons cuyos niveles son multiplos de 2:")
+mostrar_niveles_multiplos(pokemons, 2)
+print("--------------")
+print("Pokémons cuyos niveles son multiplos de 5:")
+mostrar_niveles_multiplos(pokemons, 5)
+print("--------------")
+print("Pokémons cuyos niveles son multiplos de 10:")
+mostrar_niveles_multiplos(pokemons, 10)  # Múltiplos de 10
+print("--------------")
+print("---------------------------------------------------------------------------------------------------")
+
+# g. mostrar todos los Pokémons de los siguientes tipo: Acero, Fuego, Electrifico, Hielo
+tipos_buscados = ["Acero", "Fuego", "Eléctrico", "Hielo"]
+
+print("Pokémons de tipo Acero, Fuego, Eléctrico, Hielo:")  
+for tipo in tipos_buscados:
+    if tipo in pokemons_por_tipo:
+        for pokemon in pokemons_por_tipo[tipo]:
+            print(pokemon)
