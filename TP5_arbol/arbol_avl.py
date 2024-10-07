@@ -1,4 +1,5 @@
-from TP_Cola import Queue
+from typing import Counter
+from cola import Queue
 
 class BinaryTree:
 
@@ -25,7 +26,7 @@ class BinaryTree:
             left_height = self.height(root.left)
             right_height = self.height(root.right)
             root.height = max(left_height, right_height) + 1
-            # print(f'altura izq {left_height} altura der {right_height}')
+            # print(f'altura left {left_height} altura right {right_height}')
             # print(f'altura de {root.value} es {root.height}')
 
     def simple_rotation(self, root, control):
@@ -54,20 +55,20 @@ class BinaryTree:
     def balancing(self, root):
         if root is not None:
             if self.height(root.left) - self.height(root.right) == 2:
-                print('desbalanceado a la izquierda')
+                #print('desbalanceado a la leftuierda')
                 if self.height(root.left.left) >= self.height(root.left.right):
-                    print('rotar simple derecha')
+                    #print('rotar simple derecha')
                     root = self.simple_rotation(root, True)
                 else:
-                    print('rotar doble derecha')
+                    #print('rotar doble derecha')
                     root = self.double_rotation(root, True)
             elif self.height(root.right) - self.height(root.left) == 2:
-                print('desbalanceado a la derecha')
+                #print('desbalanceado a la derecha')
                 if self.height(root.right.right) >= self.height(root.right.left):
-                    print('rotar simple izquierda')
+                    #print('rotar simple leftuierda')
                     root = self.simple_rotation(root, False)
                 else:
-                    print('rotar doble izquierda')
+                    #print('rotar doble leftuierda')
                     root = self.double_rotation(root, False)
         return root
 
@@ -92,7 +93,7 @@ class BinaryTree:
                     # print('lo encontre')
                     return root
                 elif key < root.value:
-                    # print(f'buscalo a la izquierda de {root.value}')
+                    # print(f'buscalo a la leftuierda de {root.value}')
                     return __search(root.left, key)
                 else:
                     # print(f'buscalo a la derecha de {root.value}')
@@ -108,7 +109,7 @@ class BinaryTree:
         def __preorden(root):
             if root is not None:
                 print(root.value)
-                # print(f'izquierda de {root.value}')
+                # print(f'leftuierda de {root.value}')
                 __preorden(root.left)
                 # print(f'derecha de {root.value}')
                 __preorden(root.right)
@@ -197,7 +198,7 @@ class BinaryTree:
             value_delete = None
             if root is not None:
                 if root.value > value:
-                    # print(f'buscar  a la izquierda de {root.value}')
+                    # print(f'buscar  a la leftuierda de {root.value}')
                     root.left, value_delete = __delete(root.left, value)
                 elif root.value < value:
                     # print(f'buscar  a la derecha de {root.value}')
@@ -206,7 +207,7 @@ class BinaryTree:
                     # print('valor encontrado')
                     value_delete = root.value
                     if root.left is None:
-                        # print('a la izquierda no hay nada')
+                        # print('a la leftuierda no hay nada')
                         return root.right, value_delete
                     elif root.right is None:
                         # print('a la derecha  no hay nada')
@@ -224,8 +225,118 @@ class BinaryTree:
         if self.root is not None:
             self.root, delete_value = __delete(self.root, value)
         return delete_value
+    
+    def separar_arbol(self, new_tree, is_hero):
+        def __separar_arbol(root, new_tree, is_hero):
+            if root is not None:
+                # Si el personaje es un héroe o un villano, según el parámetro, lo inserta en el nuevo árbol
+                if root.other_value.get('is_hero') == is_hero:
+                    new_tree.insert_node(root.value, root.other_value)
+                __separar_arbol(root.left, new_tree, is_hero)
+                __separar_arbol(root.right, new_tree, is_hero)
+        __separar_arbol(self.root, new_tree, is_hero)
+        return new_tree
+    
+    def contar_nodos(self, is_hero):
+        def __contar_nodos(root, is_hero):
+            counter = 0
+            if root is not None:
+                if root.other_value.get('is_hero') == is_hero:
+                    counter = 1
+                counter += __contar_nodos(root.left, is_hero)
+                counter += __contar_nodos(root.right, is_hero)
+            return counter
 
-tree = BinaryTree()
+        return __contar_nodos(self.root, is_hero)
+
+    ### ------------------23------------------------------------
+
+    def agregar_descripcion(self, nombre_criatura, descripcion):
+        nodo = self.search(nombre_criatura)
+        if nodo:
+            nodo.other_value["descripcion"] = descripcion
+
+    def agregar_captura(self, nombre_criatura, capturador):
+        nodo = self.search(nombre_criatura)
+        if nodo:
+            nodo.other_value["derrotada_por_por"] = capturador
+
+    def inorden_derrotados(self):
+        def __inorden_derrotados(root):
+            if root is not None:
+                __inorden_derrotados(root.left)
+                derrotado_por = root.other_value.get("derrotado_por", "No derrotado")
+                print(f'{root.value} - Derrotado por: {derrotado_por}')
+                __inorden_derrotados(root.right)
+        
+        if self.root is not None:
+            __inorden_derrotados(self.root)
+    
+    def top_derrotadores(self, top_n=3):
+        derrotadores = Counter()
+
+        def __contar_derrotadores(root):
+            if root is not None:
+                derrotado_por = root.other_value.get("derrotado_por")
+                if derrotado_por:
+                    derrotadores[derrotado_por] += 1
+                __contar_derrotadores(root.left)
+                __contar_derrotadores(root.right)
+
+        __contar_derrotadores(self.root)
+        for derrotador, count in derrotadores.most_common(top_n):
+            print(f'{derrotador}: {count} criaturas derrotadas')
+
+    def listar_derrotados_por(self, heroe):
+        def __listar_derrotados_por(root, heroe):
+            if root is not None:
+                if root.other_value.get("derrotado_por") == heroe:
+                    print(root.value)
+                __listar_derrotados_por(root.left, heroe)
+                __listar_derrotados_por(root.right, heroe)
+
+        __listar_derrotados_por(self.root, heroe)
+
+    def listar_no_derrotados(self):
+        def __listar_no_derrotados(root):
+            if root is not None:
+                if not root.other_value.get("derrotado_por"):
+                    print(root.value)
+                __listar_no_derrotados(root.left)
+                __listar_no_derrotados(root.right)
+
+        __listar_no_derrotados(self.root)
+
+    def buscar_por_coincidencia(self, texto):
+        def __buscar_por_coincidencia(root, texto):
+            if root is not None:
+                if texto.lower() in root.value.lower():
+                    print(f'{root.value} - {root.other_value}')
+                __buscar_por_coincidencia(root.left, texto)
+                __buscar_por_coincidencia(root.right, texto)
+
+        __buscar_por_coincidencia(self.root, texto)
+
+    def eliminar_criaturas(self):
+        criaturas = ["Basilisco", "Sirenas"]
+        for criatura in criaturas:
+            self.delete_node(criatura)
+
+    def criaturas_capturadas(self, heroe):
+        def __criaturas_capturadas(root, heroe):
+            if root is not None:
+                if root.other_value.get("capturada_por") == heroe:
+                    print(root.value)
+                __criaturas_capturadas(root.left, heroe)
+                __criaturas_capturadas(root.right, heroe)
+
+        __criaturas_capturadas(self.root, heroe)
+
+
+
+
+
+#tree = BinaryTree()
 
 # tree.insert_node('B')
 # tree.insert_node('W')
@@ -235,13 +346,13 @@ tree = BinaryTree()
 # tree.insert_node('R')
 # tree.insert_node('Z')
 # tree.root = tree.balancing(tree.root)
-for i in range(1, 16):
-    tree.insert_node(i)
-    tree.by_level()
-    a = input()
+#for i in range(1, 16):
+ #   tree.insert_node(i)
+  #  tree.by_level()
+   # a = input()
 
 
-print('diferencia de altura', tree.height(tree.root.right) - tree.height(tree.root.left))
+#print('diferencia de altura', tree.height(tree.root.right) - tree.height(tree.root.left))
 # tree.insert_node(19)
 # tree.insert_node(7)
 # tree.insert_node(31)
